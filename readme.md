@@ -1,4 +1,4 @@
-## MP3 Player implemented in rust
+# MP3 Player implemented in rust
 
 ### Must have features (MVP)
 - Playback of range of formats
@@ -24,3 +24,12 @@
 ### way in the future
 
 - GUI
+
+
+## Usage instructions
+rustMp3 [Path] [arguments]
+### Argumnets
+- **-v** : control playback volume
+- **--verbose** : verbose console output
+- **-r** : repeat either song or folder playback.
+- **-s** : adjust playback speed
