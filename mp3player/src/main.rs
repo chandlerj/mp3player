@@ -1,14 +1,15 @@
 use std::env;
+
+use crate::audio_engine::AudioPlayer;
 mod audio_engine;
 
 
 fn main() {
     let args: Vec<String> = env::args().collect(); //program arguments
-    dbg!(&args);
 
     let file_name: String = process_arguments(args);
-    audio_engine::play_audio(file_name);
-
+    let mut audio_player: AudioPlayer = AudioPlayer::initialize_engine();
+    audio_player.play_audio(file_name);
 }
 
 
