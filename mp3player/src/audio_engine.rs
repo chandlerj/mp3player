@@ -2,11 +2,13 @@
 use std::fs::File;
 use std::io::BufReader;
 use rodio::{Decoder, OutputStream, source::Source, OutputStreamHandle, Sink};
-
+use std::time::Duration;
 pub struct AudioPlayer {
     stream: OutputStream,
     stream_handle: OutputStreamHandle,
-    sink: Sink,
+    pub track_length: Duration,
+    pub file_path: String,
+    pub sink: Sink,
 }
 impl AudioPlayer{
 
@@ -18,7 +20,9 @@ impl AudioPlayer{
                 let stream = _s; 
                 let stream_handle = s_h;
                 let sink = Sink::try_new(&stream_handle).unwrap();
-                AudioPlayer{stream, stream_handle, sink}
+                let track_length: Duration = Duration::new(0, 0);
+                let file_path = String::from("");
+                AudioPlayer{stream, stream_handle, sink, track_length, file_path}
             }
             Err(e) => {
                 panic!("Unable to initialize audio device: {e}")
@@ -28,10 +32,11 @@ impl AudioPlayer{
 
     // plays file from specified path
     pub fn play_audio(&mut self, audio_path: String){
-        
+        self.file_path = audio_path.clone();
         let file = BufReader::new(AudioPlayer::open_file(audio_path));
+        
         let source = Decoder::new(file).unwrap();
-    
+        // self.track_length = source.total_duration().unwrap();
         self.sink.append(source);
 
         self.sink.sleep_until_end();

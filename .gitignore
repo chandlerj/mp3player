@@ -15,3 +15,6 @@ Cargo.lock
 
 # ignore draw.io temp files
 .$uml.*
+
+#Vs-Code meta information
+.vscode

@@ -2,14 +2,17 @@ use std::env;
 
 use crate::audio_engine::AudioPlayer;
 mod audio_engine;
-
+mod userInterface;
 
 fn main() {
     let args: Vec<String> = env::args().collect(); //program arguments
 
     let file_name: String = process_arguments(args);
     let mut audio_player: AudioPlayer = AudioPlayer::initialize_engine();
+    userInterface::display_track_metadata(&audio_player);
     audio_player.play_audio(file_name);
+    
+    
 }
 
 
