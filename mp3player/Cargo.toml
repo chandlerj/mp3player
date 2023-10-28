@@ -8,4 +8,4 @@ edition = "2021"
 [dependencies]
 id3 = "1.7.0"
 rodio = "0.17.1"
-
+futures = "0.3"
