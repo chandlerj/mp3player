@@ -9,7 +9,7 @@ mod user_interface;
 fn main() {
     block_on(async_main());
 }
-   
+  
 
 async fn async_main(){
     
@@ -19,8 +19,9 @@ async fn async_main(){
     let file_name = String::from("/home/chandler/Desktop/hazarddutypay.mp3");
     
     let player = audio_player.play_audio(&file_name); 
+    
+    user_interface::display_track_metadata();
     player.await;
-    //user_interface::display_track_metadata(&audio_player);}
 }
 
 fn process_arguments(args: Vec<String>) -> String {
